@@ -1,0 +1,11 @@
+rm -Rf .git/refs/original
+git gc --aggressive --prune=now
+git add .
+git commit -m "_"
+git filter-branch --env-filter '
+export GIT_AUTHOR_EMAIL="_"
+export GIT_AUTHOR_NAME="_"
+export GIT_COMMITTER_EMAIL="_"
+export GIT_COMMITTER_NAME="_"
+' -- --all
+git push
